@@ -61,7 +61,7 @@ export const experienceItems: ExperienceItem[] = [
     period: 'Marzo 2026 — Mayo 2026',
     mode: 'Freelance · Remoto',
     description:
-      'Desarrollo completo del backend de Orbit desde cero: plataforma multi-tenant para monitoreo legislativo, procesamiento con IA y alertas por intereses de organización.',
+      'Desarrollo completo del backend de Orbit desde cero: plataforma multi-tenant para organizaciones y Echo, servicio de monitoreo legislativo con procesamiento de sesiones, IA y alertas por intereses de organización.',
     highlights: [
       'Diseño del modelo multi-tenant con organizaciones, miembros, roles, servicios e intereses por cliente.',
       'Implementación de scraping legislativo, persistencia en PostgreSQL, migraciones con Flyway y APIs REST para calendario de sesiones.',
@@ -73,10 +73,10 @@ export const experienceItems: ExperienceItem[] = [
 
 export const projects: Project[] = [
   {
-    name: 'Orbit',
+    name: 'Orbit / Echo',
     featured: true,
     summary:
-      'Plataforma multi-tenant de monitoreo legislativo con IA para registrar agendas, procesar sesiones del Congreso mexicano y alertar a organizaciones según sus intereses.',
+      'Orbit Intelligence es la plataforma multi-tenant para la que desarrollé Echo, el servicio de monitoreo legislativo con IA para registrar agendas, procesar sesiones del Congreso mexicano y alertar a organizaciones según sus intereses.',
     stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker', 'Linux VPS', 'IA', 'APIs REST'],
     outcome: 'Backend productivo desde cero, con administración multi-tenant, scraping legislativo, procesamiento con IA, notificaciones y despliegue en infraestructura propia.',
   },

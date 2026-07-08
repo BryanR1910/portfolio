@@ -25,7 +25,13 @@ html {
   overflow-x: hidden;
   background: var(--background);
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 8rem;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
 }
 
 body {
@@ -49,6 +55,15 @@ a {
   color: inherit;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
+}
+
+.mobile-nav {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav::-webkit-scrollbar {
+  display: none;
 }
 
 :focus-visible {
@@ -315,6 +330,13 @@ a {
 .nav-link:focus-visible::after {
   opacity: 0.9;
   transform: scaleX(1);
+}
+
+.orbit-link .material-symbols-outlined {
+  font-size: 0.875rem;
+  font-variation-settings: "OPSZ" 20, "wght" 600, "FILL" 0, "GRAD" 0;
+  line-height: 1;
+  transform: translateY(0.02em);
 }
 
 .cta-shimmer {
