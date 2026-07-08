@@ -1,0 +1,31 @@
+---
+import { techGroups } from '../content/portfolio';
+---
+
+<section id="stack" class="section-shell" aria-labelledby="stack-title">
+  <p class="eyebrow">Stack</p>
+  <h2 id="stack-title" class="display-heading mt-3 text-3xl font-semibold text-[#f4f0ea] sm:text-5xl">Tecnologías y herramientas</h2>
+  <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {techGroups.map((group) => (
+      <article class="muted-card rounded-3xl p-6">
+        <h3 class="text-lg font-semibold text-[#f4f0ea]">{group.title}</h3>
+        <ul class="mt-5 flex flex-wrap gap-2">
+          {group.items.map((item) => (
+            <li class="tech-chip chip px-3 py-2 text-sm" style={`--tech-color: ${item.color}`}>
+              <img
+                class="tech-chip__icon"
+                src={item.icon}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none';this.nextElementSibling.hidden=false"
+              />
+              <span class="tech-chip__fallback" hidden aria-hidden="true">{item.name.slice(0, 2)}</span>
+              <span>{item.name}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

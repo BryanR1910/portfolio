@@ -1,0 +1,21 @@
+---
+import { projects } from '../content/portfolio';
+---
+
+<section id="proyectos" class="section-shell" aria-labelledby="projects-title">
+  <p class="eyebrow">Proyectos</p>
+  <h2 id="projects-title" class="display-heading mt-3 text-3xl font-semibold text-[#f4f0ea] sm:text-5xl">Construcción backend aplicada</h2>
+  <div class="mt-8 grid gap-5 md:grid-cols-3">
+    {projects.map((project) => (
+      <article class:list={['rounded-3xl p-6', project.featured ? 'surface-card md:col-span-1' : 'muted-card']}>
+        {project.featured && <p class="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#d9c7a3]">Destacado</p>}
+        <h3 class="text-xl font-semibold text-[#f4f0ea]">{project.name}</h3>
+        <p class="mt-4 leading-7 text-[#a8b3c7]">{project.summary}</p>
+        <p class="mt-5 text-sm text-[#6f7d95]">{project.outcome}</p>
+        <ul class="mt-5 flex flex-wrap gap-2" aria-label={`Stack de ${project.name}`}>
+          {project.stack.map((tech) => <li class="chip px-3 py-1 text-xs font-medium">{tech}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

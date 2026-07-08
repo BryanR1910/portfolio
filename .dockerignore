@@ -1,0 +1,14 @@
+.git
+.gitignore
+.astro
+dist
+node_modules
+npm-debug.log*
+Dockerfile
+docker-compose.yml
+.dockerignore
+README.md
+*.local
+.env
+.env.*
+!.env.example

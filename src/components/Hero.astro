@@ -1,0 +1,30 @@
+---
+import { profile } from '../content/portfolio';
+---
+
+<section id="inicio" class="section-shell grid min-h-[calc(100svh-5rem)] items-center gap-10 pt-14 md:grid-cols-[1.15fr_0.85fr] lg:gap-16" aria-labelledby="hero-title">
+  <div class="max-w-3xl text-center md:text-left">
+    <p class="eyebrow">{profile.eyebrow}</p>
+    <h1 id="hero-title" class="display-heading mt-5 text-5xl font-semibold leading-[0.95] text-[#f4f0ea] sm:text-6xl lg:text-7xl">
+      {profile.name}
+    </h1>
+    <p class="mt-5 text-xl font-medium text-[#d8ebe7] sm:text-2xl">{profile.role}</p>
+    <p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#a8b3c7] sm:text-lg md:mx-0">{profile.summary}</p>
+    <p class="mt-4 text-sm text-[#6f7d95]">{profile.location}</p>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start">
+      <a class="link-focus rounded-full bg-[#d8ebe7] px-5 py-3 text-center text-sm font-bold text-[#080b12] transition hover:bg-[#f0f7f4]" href="#contacto">
+        Contactar
+      </a>
+      <a class="link-focus rounded-full border border-white/15 px-5 py-3 text-center text-sm font-bold text-[#f4f0ea] transition hover:border-white/40 hover:bg-white/10" href={profile.cvHref}>
+        {profile.cvLabel}
+      </a>
+    </div>
+  </div>
+  <div class="surface-card rounded-[2rem] p-6 sm:p-8">
+    <p class="eyebrow text-[#6f7d95]">Enfoque</p>
+    <p class="display-heading mt-4 text-3xl font-semibold leading-tight text-[#f4f0ea] sm:text-4xl">Backend sólido para productos que necesitan crecer.</p>
+    <p class="mt-4 leading-7 text-[#a8b3c7]">
+      APIs, persistencia y servicios mantenibles, sin agregar complejidad innecesaria al primer alcance.
+    </p>
+  </div>
+</section>

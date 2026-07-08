@@ -1,0 +1,25 @@
+---
+import { profile } from '../content/portfolio';
+
+const navItems = [
+  { href: '#experiencia', label: 'Experiencia' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#stack', label: 'Stack' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-white/10 bg-[#080b12]/90 backdrop-blur-xl">
+  <nav class="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6" aria-label="Navegación principal">
+    <a href="#main-content" class="link-focus text-sm font-semibold tracking-tight text-[#f4f0ea] sm:text-base">Bryan Rodríguez</a>
+    <div class="hidden items-center gap-6 text-sm text-[#a8b3c7] md:flex">
+      {navItems.map((item) => <a class="link-focus transition hover:text-[#f4f0ea]" href={item.href}>{item.label}</a>)}
+    </div>
+    <a
+      class="link-focus rounded-full border border-[#d8ebe7]/50 px-4 py-2 text-sm font-semibold text-[#d8ebe7] transition hover:bg-[#d8ebe7] hover:text-[#080b12]"
+      href={profile.cvHref}
+    >
+      {profile.cvLabel}
+    </a>
+  </nav>
+</header>

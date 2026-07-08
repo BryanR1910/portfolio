@@ -1,0 +1,80 @@
+schema: spec-driven
+
+project: portfolio
+artifact_store:
+  mode: hybrid
+  stores:
+    - openspec
+    - engram
+
+context: |
+  Project root: /home/Bryan/Documents/portfolio
+  Tech stack: none detected yet (no package.json, go.mod, pyproject.toml, Cargo.toml, or source files present)
+  Architecture: not established yet; repository currently contains only SDD/ATL metadata
+  Testing: no test runner detected
+  Style: generated technical artifacts default to English
+
+strict_tdd: false
+
+testing:
+  detected: 2026-07-02
+  strict_tdd: false
+  reason: "No test runner or project stack detected yet. Enable Strict TDD once a stack and test command exist."
+  runner:
+    available: false
+    framework: null
+    command: null
+  layers:
+    unit:
+      available: false
+      tool: null
+    integration:
+      available: false
+      tool: null
+    e2e:
+      available: false
+      tool: null
+  coverage:
+    available: false
+    command: null
+  quality:
+    linter:
+      available: false
+      command: null
+    type_checker:
+      available: false
+      command: null
+    formatter:
+      available: false
+      command: null
+
+rules:
+  proposal:
+    - Include intent, scope, risks, rollout, and rollback plan for risky changes.
+    - Respect the configured review budget of 400 changed lines.
+    - Chained PR strategy is ask-always; ask before planning stacked review slices.
+  specs:
+    - Use RFC 2119 keywords for requirements.
+    - Use Given/When/Then scenarios for behavior.
+    - Keep generated technical artifacts in English unless explicitly requested otherwise.
+  design:
+    - Detect the real stack before selecting libraries or architecture.
+    - Document tradeoffs and migration constraints when adding foundational tooling.
+  tasks:
+    - Group tasks into reviewable work units.
+    - Keep tasks completable in one focused session when possible.
+  apply:
+    tdd: false
+    test_command: ""
+    rules:
+      - Follow existing project patterns once a stack exists.
+      - Add or update tests with implementation when a test runner is available.
+  verify:
+    test_command: ""
+    build_command: "npm run build"
+    coverage_threshold: 0
+    rules:
+      - Report unavailable verification commands explicitly.
+  archive:
+    - Preserve archived changes as an audit trail.
+    - Warn before merging destructive deltas.

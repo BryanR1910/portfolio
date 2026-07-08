@@ -1,0 +1,25 @@
+---
+import { experienceItems } from '../content/portfolio';
+---
+
+<section id="experiencia" class="section-shell" aria-labelledby="experience-title">
+  <p class="eyebrow">Experiencia</p>
+  <h2 id="experience-title" class="display-heading mt-3 text-3xl font-semibold text-[#f4f0ea] sm:text-5xl">Trabajo reciente</h2>
+  <div class="mt-8 grid gap-6">
+    {experienceItems.map((item) => (
+      <article class="surface-card rounded-3xl p-6 sm:p-8">
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h3 class="text-xl font-semibold text-[#f4f0ea]">{item.role}</h3>
+            <p class="mt-1 text-[#a8b3c7]">{item.company} · {item.mode}</p>
+          </div>
+          <p class="text-sm font-medium text-[#d8ebe7]">{item.period}</p>
+        </div>
+        <p class="mt-5 leading-7 text-[#a8b3c7]">{item.description}</p>
+        <ul class="mt-5 grid gap-3 text-sm text-[#a8b3c7] sm:grid-cols-3">
+          {item.highlights.map((highlight) => <li class="muted-card rounded-2xl p-4">{highlight}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

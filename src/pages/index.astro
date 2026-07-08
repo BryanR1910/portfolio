@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { techGroups } from '../content/portfolio';
+
+const orbitImage =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuDfIGquqOMvLxct6bp7uiJUOuQytF6M-Fb9PXbj0KgVDvLKAExD73LcHjBA4Qjer7Q2kfl0ouBQYJbIOYkCWHWOXN5inRliB6wCS36XoEBr6xcDHJ_eR_Bu_a9Nj8XtyFsNswYOyu_xUMaAcxPDSOr0mA2Q4cXk2g2QGc_c9qvOe91Ic3mdTpo7NMOO5XTQ0MicEiiIZ5iIQPGHfe33dRDW_FqAruXIkrr4Tl0aYPV477iBQJpquqeWW4CqXReA-Wfy3XfX2JtagA';
+
+const navItems = [
+  { href: '#experiencia', label: 'Experiencia' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#stack', label: 'Stack' },
+  { href: '#contacto', label: 'Contacto' },
+];
+
+const projectChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'];
+---
+
+<BaseLayout>
+  <header class="fixed inset-x-0 top-0 z-40 border-b border-[var(--card-border)] bg-[rgba(18,18,18,0.82)] backdrop-blur-xl">
+    <nav class="mx-auto flex h-20 w-full max-w-[1100px] items-center justify-between px-6 md:px-8" aria-label="Navegación principal">
+      <a class="link-focus font-['Playfair_Display'] text-[18px] font-semibold leading-none tracking-tight text-[var(--text)]" href="#inicio">Bryan Rodríguez</a>
+      <div class="hidden items-center gap-9 text-sm font-medium text-[var(--muted)] md:flex">
+        {navItems.map((item) => <a class="nav-link link-focus transition hover:text-[var(--text)]" href={item.href}>{item.label}</a>)}
+      </div>
+      <a class="cta-shimmer link-focus rounded-[2px] border border-[var(--outline)] px-6 py-3 font-['Geist'] text-[12px] font-semibold uppercase leading-none tracking-[0.1em] text-[var(--text)] transition" href="mailto:bg.rodriguez.sanchez@gmail.com?subject=Solicitud%20de%20CV%20-%20Bryan%20Rodr%C3%ADguez">CV</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="space-y-32 pb-32 pt-32">
+    <section id="inicio" class="section-shell relative grid min-h-[716px] items-center overflow-hidden" aria-labelledby="hero-title">
+      <div class="hero-glow pointer-events-none absolute left-1/2 top-1/2"></div>
+      <div class="relative mx-auto grid w-full max-w-[1100px] gap-10 lg:grid-cols-12">
+        <div class="hero-copy text-center lg:col-span-8 lg:col-start-3">
+          <p class="hero-eyebrow eyebrow">DESARROLLADOR BACKEND</p>
+          <h1 id="hero-title" class="hero-name display-heading mt-6 text-6xl font-bold leading-[0.95] text-[var(--text)] md:text-8xl">
+            Bryan Rodríguez
+          </h1>
+          <span class="hero-name-accent" aria-hidden="true"></span>
+          <p class="hero-description mx-auto mt-8 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
+            Construyo APIs y sistemas backend enfocados en resolver problemas reales con software claro, mantenible y escalable.
+          </p>
+          <div class="hero-actions mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a class="cta-shimmer link-focus inline-flex items-center justify-center rounded-[2px] border border-[var(--outline)] bg-transparent px-8 py-4 font-['Geist'] text-[12px] font-semibold uppercase leading-none tracking-[0.1em] text-[var(--text)] transition" href="#proyectos">Ver proyectos</a>
+            <div class="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-[var(--muted)]">
+              <a class="link-focus hover:text-[var(--text)]" href="https://github.com/BryanR1910">GitHub</a>
+              <a class="link-focus hover:text-[var(--text)]" href="https://www.linkedin.com/in/bryan-rodriguez">LinkedIn</a>
+              <a class="link-focus hover:text-[var(--text)]" href="mailto:bg.rodriguez.sanchez@gmail.com">Contacto</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia" class="section-reveal section-shell section-grid" aria-labelledby="experience-title">
+        <div class="section-label">
+          <p class="eyebrow">Trayectoria</p>
+          <h2 id="experience-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Experiencia</h2>
+        </div>
+        <div class="section-content">
+          <article class="surface-card rounded-[2rem] p-6 md:p-8">
+            <div class="flex flex-col justify-between gap-6 md:flex-row md:items-start">
+              <div>
+                <p class="text-sm font-semibold text-[var(--secondary)]">Mozaiko</p>
+                <h3 class="mt-2 text-2xl font-semibold text-[var(--text)]">Desarrollador Backend Freelancer</h3>
+              </div>
+              <p class="text-sm font-medium text-[var(--muted)]">Marzo 2026 — Mayo 2026</p>
+            </div>
+            <p class="mt-6 max-w-3xl text-base leading-8 text-[var(--muted)]">
+              Lideré el desarrollo completo del backend de Orbit desde cero: una plataforma multi-tenant para organizaciones que monitorea sesiones legislativas, procesa información pública y envía alertas inteligentes según los intereses de cada cliente.
+            </p>
+            <div class="mt-8 rounded-[1.5rem] border border-[var(--outline-variant)] bg-[rgba(211,188,252,0.04)] p-5">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-[var(--tertiary)]" aria-hidden="true">deployed_code</span>
+                <p class="font-['JetBrains_Mono'] text-xs font-bold uppercase tracking-[0.2em] text-[var(--tertiary)]">INICIATIVA DESTACADA</p>
+              </div>
+              <h4 class="mt-4 text-xl font-semibold text-[var(--text)]">Orbit Project</h4>
+              <p class="mt-3 leading-7 text-[var(--muted)]">
+                Construí la base técnica de Orbit, desde el modelo multi-tenant hasta la operación en producción.
+              </p>
+              <ul class="mt-4 space-y-3 leading-7 text-[var(--muted)]">
+                <li class="flex gap-3">
+                  <span class="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[var(--tertiary)]" aria-hidden="true"></span>
+                  <span>Diseñé organizaciones, miembros, roles, servicios e intereses por cliente.</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[var(--tertiary)]" aria-hidden="true"></span>
+                  <span>Implementé scraping de agendas legislativas, persistencia en PostgreSQL con Flyway y endpoints para calendario.</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[var(--tertiary)]" aria-hidden="true"></span>
+                  <span>Automaticé la captura de transmisiones HLS y la generación de resúmenes y versiones estenográficas con IA.</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[var(--tertiary)]" aria-hidden="true"></span>
+                  <span>Desarrollé matching de intereses por organización y notificaciones por correo para sus miembros.</span>
+                </li>
+                <li class="flex gap-3">
+                  <span class="mt-3 h-1.5 w-1.5 flex-none rounded-full bg-[var(--tertiary)]" aria-hidden="true"></span>
+                  <span>Preparé producción en Linux VPS con Docker, firewall, reverse proxy y TLS.</span>
+                </li>
+              </ul>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {projectChips.map((chip) => <span class="chip px-3 py-1.5">{chip}</span>)}
+              </div>
+            </div>
+          </article>
+        </div>
+    </section>
+
+    <section id="proyectos" class="section-reveal section-shell section-grid" aria-labelledby="projects-title">
+        <div class="section-label">
+          <p class="eyebrow">Trabajo aplicado</p>
+          <h2 id="projects-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Proyectos</h2>
+        </div>
+        <div class="section-content space-y-6">
+          <article class="orbit-project surface-card overflow-hidden rounded-[2rem] lg:grid lg:grid-cols-2">
+            <div class="orbit-image min-h-[280px] bg-cover bg-center" style={`background-image: url('${orbitImage}')`} aria-label="Vista abstracta del proyecto Orbit"></div>
+            <div class="flex flex-col justify-center p-6 md:p-8">
+              <p class="eyebrow">Proyecto destacado</p>
+              <h3 class="display-heading mt-4 text-4xl font-bold text-[var(--text)]">Orbit</h3>
+              <p class="mt-5 leading-8 text-[var(--muted)]">Plataforma de monitoreo legislativo con procesamiento de video y resúmenes generados por IA, diseñada para manejar datos complejos de manera eficiente y escalable.</p>
+              <div class="mt-6 flex flex-wrap gap-2">{projectChips.map((chip) => <span class="chip px-3 py-1.5">{chip}</span>)}</div>
+            </div>
+          </article>
+
+          <div class="grid gap-6 lg:grid-cols-2">
+            <article class="muted-card rounded-[2rem] p-6 md:p-7">
+              <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">link</span>
+              <h3 class="mt-5 text-2xl font-semibold text-[var(--text)]">Acortador de URLs</h3>
+              <p class="mt-4 leading-7 text-[var(--muted)]">Una aplicación backend para crear, almacenar y resolver URLs cortas con alto rendimiento y seguimiento analítico de clics.</p>
+            </article>
+            <article class="muted-card rounded-[2rem] p-6 md:p-7">
+              <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">shopping_cart</span>
+              <h3 class="mt-5 text-2xl font-semibold text-[var(--text)]">E-Commerce Platform</h3>
+              <p class="mt-4 leading-7 text-[var(--muted)]">Una base de comercio electrónico enfocada en el backend para gestionar catálogos de productos, carritos escalables, pedidos seguros y administración robusta de usuarios.</p>
+            </article>
+          </div>
+        </div>
+    </section>
+
+    <section id="stack" class="section-reveal section-shell section-grid" aria-labelledby="stack-title">
+        <div class="section-label">
+          <p class="eyebrow">Herramientas y tecnología</p>
+          <h2 id="stack-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Stack técnico</h2>
+          <p class="mt-5 leading-7 text-[var(--muted)]">Tecnologías y herramientas que utilizo para construir, probar y mantener sistemas backend.</p>
+        </div>
+        <div class="section-content grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {techGroups.map((group) => (
+            <article class:list={["muted-card rounded-[1.75rem] p-6", group.title === 'Herramientas' && 'lg:col-span-2']}>
+              <h3 class="text-xl font-semibold text-[var(--text)]">{group.title}</h3>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span class="tech-chip chip px-3 py-1.5" style={`--tech-color: ${item.color}`}>
+                    <img
+                      class="tech-chip__icon"
+                      src={item.icon}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      onerror="this.style.display='none';this.nextElementSibling.hidden=false"
+                    />
+                    <span class="tech-chip__fallback" hidden aria-hidden="true">{item.name.slice(0, 2)}</span>
+                    <span>{item.name}</span>
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+    </section>
+
+    <section id="contacto" class="section-reveal section-shell section-grid" aria-labelledby="contact-title">
+        <div class="section-label">
+          <p class="eyebrow">Disponible para colaborar</p>
+          <h2 id="contact-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Contacto</h2>
+        </div>
+        <div class="section-content">
+          <div class="surface-card rounded-[2rem] p-6 md:p-8">
+            <p class="max-w-2xl text-lg leading-8 text-[var(--muted)]">Si quieres conectar, colaborar o conocer más sobre mi trabajo, puedes escribirme por cualquiera de estos medios.</p>
+            <div class="mt-8 grid gap-3 sm:grid-cols-3">
+              <a class="link-focus rounded-2xl border border-[var(--outline-variant)] p-4 font-semibold text-[var(--text)] transition hover:border-[var(--outline)]" href="mailto:bg.rodriguez.sanchez@gmail.com">Email</a>
+              <a class="link-focus rounded-2xl border border-[var(--outline-variant)] p-4 font-semibold text-[var(--text)] transition hover:border-[var(--outline)]" href="https://www.linkedin.com/in/bryan-rodriguez">LinkedIn</a>
+              <a class="link-focus rounded-2xl border border-[var(--outline-variant)] p-4 font-semibold text-[var(--text)] transition hover:border-[var(--outline)]" href="https://github.com/BryanR1910">GitHub</a>
+            </div>
+          </div>
+        </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-[var(--card-border)] py-8">
+    <div class="mx-auto flex w-full max-w-[1100px] flex-col gap-3 px-6 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-8">
+      <p>© 2026 Bryan Rodríguez. Backend Developer.</p>
+      <a class="link-focus hover:text-[var(--text)]" href="#inicio">Volver arriba</a>
+    </div>
+  </footer>
+</BaseLayout>
