@@ -151,7 +151,7 @@ export const contactLinks: ContactLink[] = [
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/bryan-rodriguez',
+    href: 'https://www.linkedin.com/in/bryan-rodriguez-sanchez-41508b3b8/',
     description: 'Perfil profesional para oportunidades y networking.',
     placeholder: true,
   },
