@@ -83,9 +83,9 @@ export const projects: Project[] = [
   {
     name: 'URL Shortener',
     summary:
-      'Acortador de URLs con generación de identificadores, redirección y base para métricas de uso.',
-    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Redis'],
-    outcome: 'Servicio backend con persistencia relacional y caché para resolver redirecciones de forma rápida.',
+      'Acortador de URLs con generación segura de códigos cortos, redirección, conteo de visitas y manejo concurrente de peticiones mediante inserción atómica con restricciones de unicidad en PostgreSQL.',
+    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JPA / Hibernate', 'Docker'],
+    outcome: 'API REST desplegada con interfaz web, persistencia relacional, concurrencia segura y Docker Compose.',
   },
   {
     name: 'E-Commerce Platform',
