@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Starfield from '../components/Starfield.astro';
 
 interface Props {
   title?: string;
@@ -29,6 +30,7 @@ const {
   </head>
   <body>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <Starfield />
     <slot />
   </body>
 </html>
