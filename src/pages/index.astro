@@ -225,19 +225,6 @@ const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JP
     const navLinks = document.querySelectorAll('.nav-link');
     if (!header) return;
 
-    // Shrink on scroll
-    let ticking = false;
-    function onScroll() {
-      header.classList.toggle('header--scrolled', window.scrollY > 60);
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(onScroll);
-        ticking = true;
-      }
-    }, { passive: true });
-
     // Active section highlight
     const sections = navLinks.length
       ? Array.from(navLinks).map((link) => document.querySelector(link.getAttribute('href')))
