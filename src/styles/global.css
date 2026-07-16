@@ -332,6 +332,37 @@ a {
   transform: scaleX(1);
 }
 
+.nav-link--active {
+  color: var(--text);
+}
+
+.nav-link--active::after {
+  opacity: 0.9;
+  transform: scaleX(1);
+}
+
+/* --- Header scroll behavior --- */
+header {
+  transition:
+    box-shadow 300ms var(--motion-ease),
+    background 300ms var(--motion-ease);
+}
+
+header.header--scrolled nav:first-of-type {
+  height: 4rem;
+  transition: height 220ms var(--motion-ease);
+}
+
+header.header--scrolled {
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
+  background: rgba(18, 18, 18, 0.92) !important;
+}
+
+header.header--scrolled .mobile-nav {
+  padding-bottom: 0.5rem;
+  transition: padding 220ms var(--motion-ease);
+}
+
 .orbit-link .material-symbols-outlined {
   font-size: 0.875rem;
   font-variation-settings: "OPSZ" 20, "wght" 600, "FILL" 0, "GRAD" 0;

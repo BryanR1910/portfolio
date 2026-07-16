@@ -218,3 +218,49 @@ const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JP
     </div>
   </footer>
 </BaseLayout>
+
+<script>
+  (function () {
+    const header = document.querySelector('header');
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (!header) return;
+
+    // Shrink on scroll
+    let ticking = false;
+    function onScroll() {
+      header.classList.toggle('header--scrolled', window.scrollY > 60);
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Active section highlight
+    const sections = navLinks.length
+      ? Array.from(navLinks).map((link) => document.querySelector(link.getAttribute('href')))
+      : [];
+
+    if (sections.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              navLinks.forEach((link) => {
+                link.classList.toggle(
+                  'nav-link--active',
+                  link.getAttribute('href') === `#${id}`
+                );
+              });
+            }
+          });
+        },
+        { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' }
+      );
+      sections.forEach((s) => s && observer.observe(s));
+    }
+  })();
+</script>
