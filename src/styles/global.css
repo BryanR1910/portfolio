@@ -408,17 +408,17 @@ a {
 }
 
 .hero-glow {
-  width: min(74vw, 680px);
-  height: min(74vw, 680px);
+  width: min(80vw, 760px);
+  height: min(64vw, 560px);
   border-radius: 999px;
   background:
-    radial-gradient(circle, rgba(211, 188, 252, 0.2) 0 18%, rgba(211, 188, 252, 0.13) 34%, transparent 68%),
-    radial-gradient(circle, rgba(178, 202, 211, 0.11) 0 28%, transparent 62%);
-  filter: blur(18px);
+    radial-gradient(ellipse, rgba(211, 188, 252, 0.25) 0 18%, rgba(211, 188, 252, 0.1) 34%, transparent 60%),
+    radial-gradient(ellipse, rgba(178, 202, 211, 0.12) 0 28%, transparent 60%);
+  filter: blur(22px);
   opacity: 0.88;
-  animation: hero-glow-breathe 7s ease-in-out infinite;
+  animation: hero-glow-breathe 5s ease-in-out infinite;
   transform-origin: center;
-  will-change: opacity, transform;
+  will-change: opacity, transform, filter;
 }
 
 .hero-eyebrow,
@@ -446,7 +446,9 @@ a {
   opacity: 0;
   transform: scaleX(0.18);
   transform-origin: center;
-  animation: hero-accent-draw 780ms var(--motion-ease) 410ms both;
+  animation:
+    hero-accent-draw 780ms var(--motion-ease) 410ms both,
+    hero-accent-breathe 5s ease-in-out 1.2s infinite;
 }
 
 .hero-description {
@@ -515,13 +517,28 @@ a {
 @keyframes hero-glow-breathe {
   0%,
   100% {
-    opacity: 0.78;
-    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(0.92);
+    filter: blur(22px);
   }
 
   50% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: translate(-50%, -50%) scale(1.12);
+    filter: blur(16px);
+  }
+}
+
+@keyframes hero-accent-breathe {
+  0%,
+  100% {
+    opacity: 0.7;
+    box-shadow: 0 0 16px rgba(211, 188, 252, 0.12);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 28px rgba(211, 188, 252, 0.3);
   }
 }
 
