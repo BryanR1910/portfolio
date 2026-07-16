@@ -83,9 +83,9 @@ export const projects: Project[] = [
   {
     name: 'URL Shortener',
     summary:
-      'Acortador de URLs con generación segura de códigos cortos, redirección, conteo de visitas y manejo concurrente de peticiones mediante inserción atómica con restricciones de unicidad en PostgreSQL.',
-    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JPA / Hibernate', 'Docker'],
-    outcome: 'API REST desplegada con interfaz web, persistencia relacional, concurrencia segura y Docker Compose.',
+      'Acortador de URLs con códigos cortos seguros, redirección, conteo de visitas en entornos concurrentes y despliegue en VPS con Docker y CI/CD automatizado con GitHub Actions.',
+    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JPA / Hibernate', 'Docker', 'GitHub Actions'],
+    outcome: 'API REST desplegada con interfaz web, persistencia relacional, manejo de concurrencia, Docker y CI/CD con GitHub Actions.',
   },
   {
     name: 'E-Commerce Platform',
@@ -125,6 +125,7 @@ export const techGroups: TechGroup[] = [
     items: [
       { name: 'Docker', icon: 'icons/docker.svg', color: '#2496ed' },
       { name: 'Docker Compose', icon: 'icons/docker.svg', color: '#2496ed' },
+      { name: 'GitHub Actions', icon: 'icons/github-actions.svg', color: '#2088ff' },
       { name: 'Linux', icon: 'icons/linux.svg', color: '#fcc624' },
     ],
   },

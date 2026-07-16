@@ -16,7 +16,7 @@ const navItems = [
 ];
 
 const projectChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'];
-const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JPA / Hibernate', 'Docker'];
+const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JPA / Hibernate', 'Docker', 'GitHub Actions'];
 ---
 
 <BaseLayout>
@@ -137,7 +137,7 @@ const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JP
             <div class="flex flex-col justify-center p-6 md:p-8">
               <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">link</span>
               <h3 class="display-heading mt-5 text-4xl font-bold text-[var(--text)]">URL Shortener</h3>
-              <p class="mt-5 leading-8 text-[var(--muted)]">Acortador de URLs con generación criptográficamente segura de códigos cortos, redirección, manejo concurrente de peticiones y conteo de visitas mediante inserción atómica con restricciones de unicidad en PostgreSQL.</p>
+              <p class="mt-5 leading-8 text-[var(--muted)]">Acortador de URLs desplegado en un VPS con Docker y automatizado con CI/CD mediante GitHub Actions. Genera códigos cortos criptográficamente seguros, maneja concurrencia en el conteo de visitas sin pérdida de datos, y garantiza la unicidad de cada código manejando colisiones de forma robusta a nivel de base de datos.</p>
               <div class="mt-5 flex flex-wrap gap-4">
                 <a class="orbit-link link-focus inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--secondary)] transition hover:text-[var(--text)]" href="https://short.bryanrodriguez.tech/" target="_blank" rel="noreferrer">
                   Ver sitio
