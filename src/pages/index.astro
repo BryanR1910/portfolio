@@ -17,6 +17,7 @@ const navItems = [
 
 const projectChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'];
 const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JPA / Hibernate', 'Docker', 'GitHub Actions'];
+const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker', 'Swagger/OpenAPI'];
 ---
 
 <BaseLayout>
@@ -152,13 +153,30 @@ const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JP
             </div>
           </article>
 
-          <div class="grid gap-6 lg:grid-cols-2">
-            <article class="muted-card rounded-[2rem] p-6 md:p-7">
-              <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">shopping_cart</span>
-              <h3 class="mt-5 text-2xl font-semibold text-[var(--text)]">E-Commerce Platform</h3>
-              <p class="mt-4 leading-7 text-[var(--muted)]">Una base de comercio electrónico enfocada en el backend para gestionar catálogos de productos, carritos escalables, pedidos seguros y administración robusta de usuarios.</p>
-            </article>
-          </div>
+          <article class="orbit-project surface-card overflow-hidden rounded-[2rem] lg:grid lg:grid-cols-2">
+            <div class="orbit-image min-h-[280px] bg-cover bg-center" style={`background-image: url('/languagedive-swagger.png')`} aria-label="Vista previa de la documentación Swagger de LanguageDive"></div>
+            <div class="flex flex-col justify-center p-6 md:p-8">
+              <div class="flex items-center justify-between">
+                <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">translate</span>
+                <span class="rounded-full border border-[var(--outline-variant)] bg-[var(--card)] px-3 py-1 text-xs font-semibold text-[var(--secondary)]">
+                  En desarrollo
+                </span>
+              </div>
+              <h3 class="display-heading mt-5 text-4xl font-bold text-[var(--text)]">LanguageDive</h3>
+              <p class="mt-5 leading-8 text-[var(--muted)]">Plataforma para aprender inglés mediante la lectura de libros en EPUB. El sistema procesa el contenido, lo divide en oraciones, detecta el idioma automáticamente y organiza las lecciones por capítulo. Permite guardar palabras con su traducción al instante y mantiene el progreso sincronizado entre sesiones.</p>
+              <div class="mt-5 flex flex-wrap gap-4">
+                <a class="orbit-link link-focus inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--secondary)] transition hover:text-[var(--text)]" href="https://github.com/LanguageDive/languagedive-backend" target="_blank" rel="noreferrer">
+                  GitHub
+                  <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                </a>
+                <a class="orbit-link link-focus inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--secondary)] transition hover:text-[var(--text)]" href="https://languagedive.bryanrodriguez.tech/swagger-ui.html" target="_blank" rel="noreferrer">
+                  Swagger
+                  <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                </a>
+              </div>
+              <div class="mt-6 flex flex-wrap gap-2">{languageDiveChips.map((chip) => <span class="chip px-3 py-1.5">{chip}</span>)}</div>
+            </div>
+          </article>
         </div>
     </section>
 
