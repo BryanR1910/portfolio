@@ -23,6 +23,7 @@ export type Project = {
   featured?: boolean;
   stack: string[];
   outcome: string;
+  href?: { label: string; url: string }[];
 };
 
 export type TechGroup = {
@@ -88,12 +89,16 @@ export const projects: Project[] = [
     outcome: 'API REST desplegada con interfaz web, persistencia relacional, manejo de concurrencia, Docker y CI/CD con GitHub Actions.',
   },
   {
-    name: 'E-Commerce Platform',
-    summary:
-      'Base backend para catálogo, órdenes y gestión de usuarios en una plataforma de comercio electrónico.',
-    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'],
-    outcome: 'Separación clara entre dominio, persistencia y puntos de entrada HTTP.',
-  },
+    name: 'LanguageDive',
+    summary: 'Plataforma para aprender inglés mediante la lectura de libros en EPUB. El sistema procesa el contenido, lo divide en oraciones, detecta el idioma automáticamente y organiza las lecciones por capítulo. Permite guardar palabras con su traducción al instante y mantiene el progreso sincronizado entre sesiones.',
+    featured: true,
+    stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker', 'Swagger/OpenAPI'],
+    outcome: 'Backend con autenticación JWT, parsing de EPUB, sistema de vocabulario con estados de aprendizaje y seguimiento de progreso.',
+    href: [
+      { label: 'GitHub', url: 'https://github.com/LanguageDive/languagedive-backend' },
+      { label: 'Swagger', url: 'https://languagedive.bryanrodriguez.tech/swagger-ui.html' }
+    ]
+  }
 ];
 
 export const techGroups: TechGroup[] = [
