@@ -5,8 +5,7 @@ import { techGroups } from '../content/portfolio';
 const orbitImage =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDfIGquqOMvLxct6bp7uiJUOuQytF6M-Fb9PXbj0KgVDvLKAExD73LcHjBA4Qjer7Q2kfl0ouBQYJbIOYkCWHWOXN5inRliB6wCS36XoEBr6xcDHJ_eR_Bu_a9Nj8XtyFsNswYOyu_xUMaAcxPDSOr0mA2Q4cXk2g2QGc_c9qvOe91Ic3mdTpo7NMOO5XTQ0MicEiiIZ5iIQPGHfe33dRDW_FqAruXIkrr4Tl0aYPV477iBQJpquqeWW4CqXReA-Wfy3XfX2JtagA';
 
-const urlShortenerImage =
-  'https://github.com/user-attachments/assets/02cf34bb-5a44-4ed2-b8d2-7668c4f9a06f';
+const urlShortenerImage = '/urlshortener.png';
 
 const navItems = [
   { href: '#experiencia', label: 'Experiencia' },
@@ -38,16 +37,15 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
 
   <main id="main-content" class="space-y-32 pb-32 pt-40 md:pt-32">
     <section id="inicio" class="section-shell relative grid min-h-[716px] items-center overflow-hidden" aria-labelledby="hero-title">
-      <div class="hero-glow pointer-events-none absolute left-1/2 top-1/2"></div>
       <div class="relative mx-auto grid w-full max-w-[1100px] gap-10 lg:grid-cols-12">
         <div class="hero-copy text-center lg:col-span-8 lg:col-start-3">
-          <p class="hero-eyebrow eyebrow">DESARROLLADOR BACKEND</p>
+          <p class="hero-eyebrow eyebrow">DESARROLLADOR FULL STACK</p>
           <h1 id="hero-title" class="hero-name display-heading mt-6 text-6xl font-bold leading-[0.95] text-[var(--text)] md:text-8xl">
             Bryan Rodríguez
           </h1>
           <span class="hero-name-accent" aria-hidden="true"></span>
           <p class="hero-description mx-auto mt-8 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
-            Construyo APIs y sistemas backend enfocados en resolver problemas reales con software claro, mantenible y escalable.
+            Transformo ideas en productos funcionales. Trabajo de punta a punta para crear soluciones digitales que resuelven problemas reales y escalan con el producto.
           </p>
           <div class="hero-actions mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a class="cta-shimmer link-focus inline-flex items-center justify-center rounded-[2px] border border-[var(--outline)] bg-transparent px-8 py-4 font-['Geist'] text-[12px] font-semibold uppercase leading-none tracking-[0.1em] text-[var(--text)] transition" href="#proyectos">Ver proyectos</a>
@@ -63,20 +61,19 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
 
     <section id="experiencia" class="section-reveal section-shell section-grid" aria-labelledby="experience-title">
         <div class="section-label">
-          <p class="eyebrow">Trayectoria</p>
-          <h2 id="experience-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Experiencia</h2>
+          <h2 id="experience-title" class="display-heading text-4xl font-bold text-[var(--text)]">Experiencia</h2>
         </div>
         <div class="section-content">
           <article class="surface-card rounded-[2rem] p-6 md:p-8">
             <div class="flex flex-col justify-between gap-6 md:flex-row md:items-start">
               <div>
                 <p class="text-sm font-semibold text-[var(--secondary)]">Mozaiko</p>
-                <h3 class="mt-2 text-2xl font-semibold text-[var(--text)]">Desarrollador Backend Freelancer</h3>
+                <h3 class="mt-2 text-2xl font-semibold text-[var(--text)]">Desarrollador Full Stack Freelancer</h3>
               </div>
               <p class="text-sm font-medium text-[var(--muted)]">Marzo 2026 — Mayo 2026</p>
             </div>
             <p class="mt-6 max-w-3xl text-base leading-8 text-[var(--muted)]">
-              Lideré el desarrollo completo del backend de Orbit desde cero: primero la plataforma multi-tenant para organizaciones, miembros, roles y servicios; después Echo, el servicio de monitoreo legislativo que procesa sesiones, genera información con IA y envía alertas según los intereses de cada cliente.
+              Lideré el desarrollo completo del sistema de Orbit desde cero: primero la plataforma multi-tenant para organizaciones, miembros, roles y servicios; después Echo, el servicio de monitoreo legislativo que procesa sesiones, genera información con IA y envía alertas según los intereses de cada cliente.
             </p>
             <div class="mt-8 rounded-[1.5rem] border border-[var(--outline-variant)] bg-[rgba(211,188,252,0.04)] p-5">
               <div class="flex items-center gap-3">
@@ -115,15 +112,13 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
 
     <section id="proyectos" class="section-reveal section-shell section-grid" aria-labelledby="projects-title">
         <div class="section-label">
-          <p class="eyebrow">Trabajo aplicado</p>
-          <h2 id="projects-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Proyectos</h2>
+          <h2 id="projects-title" class="display-heading text-4xl font-bold text-[var(--text)]">Proyectos</h2>
         </div>
         <div class="section-content space-y-6">
           <article class="orbit-project surface-card overflow-hidden rounded-[2rem] lg:grid lg:grid-cols-2">
             <div class="orbit-image min-h-[280px] bg-cover bg-center" style={`background-image: url('${orbitImage}')`} aria-label="Vista abstracta del proyecto Orbit"></div>
             <div class="flex flex-col justify-center p-6 md:p-8">
-              <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">public</span>
-              <h3 class="display-heading mt-5 text-4xl font-bold text-[var(--text)]">Orbit / Echo</h3>
+              <h3 class="display-heading text-4xl font-bold text-[var(--text)]">Orbit / Echo</h3>
               <p class="mt-5 leading-8 text-[var(--muted)]">Orbit Intelligence es la plataforma para la que desarrollé Echo, un servicio de monitoreo legislativo con scraping, procesamiento de video, resúmenes generados por IA y alertas por intereses de organización.</p>
               <a class="orbit-link link-focus mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--secondary)] transition hover:text-[var(--text)]" href="https://www.orbitintelligence.com.mx/" target="_blank" rel="noreferrer">
                 Ver sitio de Orbit
@@ -136,8 +131,7 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
           <article class="orbit-project surface-card overflow-hidden rounded-[2rem] lg:grid lg:grid-cols-2">
             <div class="orbit-image min-h-[280px] bg-cover bg-center" style={`background-image: url('${urlShortenerImage}')`} aria-label="Vista previa del acortador de URLs"></div>
             <div class="flex flex-col justify-center p-6 md:p-8">
-              <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">link</span>
-              <h3 class="display-heading mt-5 text-4xl font-bold text-[var(--text)]">URL Shortener</h3>
+              <h3 class="display-heading text-4xl font-bold text-[var(--text)]">URL Shortener</h3>
               <p class="mt-5 leading-8 text-[var(--muted)]">Acortador de URLs desplegado en un VPS con Docker y automatizado con CI/CD mediante GitHub Actions. Genera códigos cortos criptográficamente seguros, maneja concurrencia en el conteo de visitas sin pérdida de datos, y garantiza la unicidad de cada código manejando colisiones de forma robusta a nivel de base de datos.</p>
               <div class="mt-5 flex flex-wrap gap-4">
                 <a class="orbit-link link-focus inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--secondary)] transition hover:text-[var(--text)]" href="https://short.bryanrodriguez.tech/" target="_blank" rel="noreferrer">
@@ -156,13 +150,12 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
           <article class="orbit-project surface-card overflow-hidden rounded-[2rem] lg:grid lg:grid-cols-2">
             <div class="orbit-image min-h-[280px] bg-cover bg-center" style={`background-image: url('/languagedive-swagger.png')`} aria-label="Vista previa de la documentación Swagger de LanguageDive"></div>
             <div class="flex flex-col justify-center p-6 md:p-8">
-              <div class="flex items-center justify-between">
-                <span class="material-symbols-outlined text-[var(--secondary)]" aria-hidden="true">translate</span>
+              <div class="flex items-center justify-end">
                 <span class="rounded-full border border-[var(--outline-variant)] bg-[var(--card)] px-3 py-1 text-xs font-semibold text-[var(--secondary)]">
                   En desarrollo
                 </span>
               </div>
-              <h3 class="display-heading mt-5 text-4xl font-bold text-[var(--text)]">LanguageDive</h3>
+              <h3 class="display-heading text-4xl font-bold text-[var(--text)]">LanguageDive</h3>
               <p class="mt-5 leading-8 text-[var(--muted)]">Plataforma para aprender inglés mediante la lectura de libros en EPUB. El sistema procesa el contenido, lo divide en oraciones, detecta el idioma automáticamente y organiza las lecciones por capítulo. Permite guardar palabras con su traducción al instante y mantiene el progreso sincronizado entre sesiones.</p>
               <div class="mt-5 flex flex-wrap gap-4">
                 <a class="orbit-link link-focus inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--secondary)] transition hover:text-[var(--text)]" href="https://github.com/LanguageDive/languagedive-backend" target="_blank" rel="noreferrer">
@@ -182,13 +175,11 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
 
     <section id="stack" class="section-reveal section-shell section-grid" aria-labelledby="stack-title">
         <div class="section-label">
-          <p class="eyebrow">Herramientas y tecnología</p>
-          <h2 id="stack-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Stack técnico</h2>
-          <p class="mt-5 leading-7 text-[var(--muted)]">Tecnologías y herramientas que utilizo para construir, probar y mantener sistemas backend.</p>
+          <h2 id="stack-title" class="display-heading text-4xl font-bold text-[var(--text)]">Stack técnico</h2>
         </div>
         <div class="section-content grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {techGroups.map((group) => (
-            <article class:list={["muted-card rounded-[1.75rem] p-6", group.title === 'Herramientas' && 'lg:col-span-2']}>
+            <article class="muted-card rounded-[1.75rem] p-6">
               <h3 class="text-xl font-semibold text-[var(--text)]">{group.title}</h3>
               <div class="mt-5 flex flex-wrap gap-2">
                 {group.items.map((item) => (
@@ -211,10 +202,9 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
         </div>
     </section>
 
-    <section id="contacto" class="section-reveal section-shell section-grid" aria-labelledby="contact-title">
+    <section id="contacto" class="section-shell section-grid" aria-labelledby="contact-title">
         <div class="section-label">
-          <p class="eyebrow">Disponible para colaborar</p>
-          <h2 id="contact-title" class="display-heading mt-3 text-4xl font-bold text-[var(--text)]">Contacto</h2>
+          <h2 id="contact-title" class="display-heading text-4xl font-bold text-[var(--text)]">Contacto</h2>
         </div>
         <div class="section-content">
           <div class="surface-card rounded-[2rem] p-6 md:p-8">
@@ -231,7 +221,7 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
 
   <footer class="border-t border-[var(--card-border)] py-8">
     <div class="mx-auto flex w-full max-w-[1100px] flex-col gap-3 px-6 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-8">
-      <p>© 2026 Bryan Rodríguez. Backend Developer.</p>
+      <p>© 2026 Bryan Rodríguez. Full Stack Developer.</p>
       <a class="link-focus hover:text-[var(--text)]" href="#inicio">Volver arriba</a>
     </div>
   </footer>
