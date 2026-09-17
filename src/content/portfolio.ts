@@ -24,6 +24,8 @@ export type Project = {
   stack: string[];
   outcome: string;
   href?: { label: string; url: string }[];
+  images?: string[];
+  cover?: string;
 };
 
 export type TechGroup = {
@@ -46,8 +48,8 @@ export type ContactLink = {
 
 export const profile: Profile = {
   name: 'Bryan Rodríguez',
-  role: 'Desarrollador Full Stack',
-  eyebrow: 'Full Stack Developer',
+  role: 'Desarrollador Java Full Stack',
+  eyebrow: 'Java Full Stack Developer',
   summary:
     'Transformo ideas en productos funcionales. Trabajo de punta a punta para crear soluciones digitales que resuelven problemas reales y escalan con el producto.',
   location: 'Argentina · Disponible para proyectos remotos',
@@ -58,7 +60,7 @@ export const profile: Profile = {
 export const experienceItems: ExperienceItem[] = [
   {
     company: 'Mozaiko',
-    role: 'Desarrollador Full Stack Freelancer',
+    role: 'Desarrollador Java Full Stack Freelancer',
     period: 'Marzo 2026 — Mayo 2026',
     mode: 'Freelance · Remoto',
     description:
@@ -98,6 +100,15 @@ export const projects: Project[] = [
       { label: 'GitHub', url: 'https://github.com/LanguageDive/languagedive-backend' },
       { label: 'Swagger', url: 'https://languagedive.bryanrodriguez.tech/swagger-ui.html' }
     ]
+  },
+  {
+    name: 'Lumina Books',
+    summary: 'Buscador de libros con más de 1.6M de títulos. Permite buscar por título y autor con autocomplete en tiempo real, filtrar por categoría, precio y rating, y paginar resultados. Todo construido con búsqueda indexada utilizando Elasticsearch para respuestas en milisegundos.',
+    stack: ['Java', 'Spring Boot', 'Elasticsearch', 'PostgreSQL', 'Docker', 'HTML', 'CSS', 'JavaScript'],
+    outcome: 'Catálogo completo con estados de carga, filtros dinámicos y navegación fluida en grilla o lista.',
+    href: [{ label: 'GitHub', url: 'https://github.com/BryanR1910/indexed-search' }],
+    images: ['/lumina/lumina-01-hero.png', '/lumina/lumina-02-suggest.png', '/lumina/lumina-03-author.png'],
+    cover: '/lumina/lumina-01-hero.png'
   }
 ];
 

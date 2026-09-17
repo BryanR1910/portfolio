@@ -1,21 +1,174 @@
 ---
 import { projects } from '../content/portfolio';
+import Lightbox from './Lightbox.astro';
+
+const slugify = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+const projectsWithGallery = projects.filter((p) => p.images && p.images.length > 0);
 ---
 
 <section id="proyectos" class="section-shell" aria-labelledby="projects-title">
   <p class="eyebrow">Proyectos</p>
   <h2 id="projects-title" class="display-heading mt-3 text-3xl font-semibold text-[#f4f0ea] sm:text-5xl">Construcción full stack aplicada</h2>
   <div class="mt-8 grid gap-5 md:grid-cols-3">
-    {projects.map((project) => (
-      <article class:list={['rounded-3xl p-6', project.featured ? 'surface-card md:col-span-1' : 'muted-card']}>
-        {project.featured && <p class="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#d9c7a3]">Destacado</p>}
-        <h3 class="text-xl font-semibold text-[#f4f0ea]">{project.name}</h3>
-        <p class="mt-4 leading-7 text-[#a8b3c7]">{project.summary}</p>
-        <p class="mt-5 text-sm text-[#6f7d95]">{project.outcome}</p>
-        <ul class="mt-5 flex flex-wrap gap-2" aria-label={`Stack de ${project.name}`}>
-          {project.stack.map((tech) => <li class="chip px-3 py-1 text-xs font-medium">{tech}</li>)}
-        </ul>
-      </article>
-    ))}
+    {projects.map((project) => {
+      const hasCover = Boolean(project.cover && project.images && project.images.length > 0);
+      const slug = slugify(project.name);
+      return (
+        <article class:list={['rounded-3xl p-6 flex flex-col', project.featured ? 'surface-card md:col-span-1' : 'muted-card']}>
+          {hasCover && (
+            <button
+              type="button"
+              class="project-cover-btn group mb-4"
+              data-lightbox-trigger={slug}
+              data-lightbox-index="0"
+              aria-label={`Abrir galería de ${project.name}`}
+            >
+              <img
+                src={project.cover}
+                alt={`${project.name} — vista previa`}
+                loading="lazy"
+                decoding="async"
+                class="project-cover aspect-video w-full rounded-2xl object-cover"
+              />
+              <span class="project-cover-overlay" aria-hidden="true">
+                <span class="material-symbols-outlined">zoom_in</span>
+              </span>
+            </button>
+          )}
+          {project.featured && <p class="mb-4 text-xs font-bold uppercase tracking-[0.25em] text-[#d9c7a3]">Destacado</p>}
+          <h3 class="text-xl font-semibold text-[#f4f0ea]">{project.name}</h3>
+          <p class="mt-4 leading-7 text-[#a8b3c7]">{project.summary}</p>
+          <p class="mt-5 text-sm text-[#6f7d95]">{project.outcome}</p>
+          <ul class="mt-5 flex flex-wrap gap-2" aria-label={`Stack de ${project.name}`}>
+            {project.stack.map((tech) => <li class="chip px-3 py-1 text-xs font-medium">{tech}</li>)}
+          </ul>
+          {project.href && project.href.length > 0 && (
+            <div class="mt-5 flex flex-wrap gap-2">
+              {project.href.map((link) => (
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-link"
+                >
+                  {link.label}
+                  <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+                </a>
+              ))}
+            </div>
+          )}
+        </article>
+      );
+    })}
   </div>
+
+  {projectsWithGallery.map((project) => (
+    <Lightbox images={project.images!} title={project.name} />
+  ))}
 </section>
+
+<style>
+  .project-cover-btn {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0f0f0f;
+    isolation: isolate;
+  }
+
+  .project-cover-btn:focus-visible {
+    outline: 2px solid var(--outline);
+    outline-offset: 3px;
+  }
+
+  .project-cover {
+    display: block;
+    transition: transform 260ms var(--motion-ease), filter 260ms var(--motion-ease);
+  }
+
+  .project-cover-btn:hover .project-cover,
+  .project-cover-btn:focus-visible .project-cover {
+    transform: scale(1.03);
+    filter: brightness(1.04);
+  }
+
+  .project-cover-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(8, 8, 10, 0.0);
+    color: white;
+    opacity: 0;
+    transition: background 220ms var(--motion-ease), opacity 220ms var(--motion-ease);
+  }
+
+  .project-cover-overlay .material-symbols-outlined {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(20, 19, 19, 0.82);
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(8px);
+    font-size: 1.25rem;
+    transform: scale(0.92);
+    transition: transform 220ms var(--motion-ease);
+  }
+
+  .project-cover-btn:hover .project-cover-overlay,
+  .project-cover-btn:focus-visible .project-cover-overlay {
+    background: rgba(8, 8, 10, 0.28);
+    opacity: 1;
+  }
+
+  .project-cover-btn:hover .project-cover-overlay .material-symbols-outlined,
+  .project-cover-btn:focus-visible .project-cover-overlay .material-symbols-outlined {
+    transform: scale(1);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--outline-variant);
+    background: transparent;
+    color: var(--muted);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 200ms var(--motion-ease), background 200ms var(--motion-ease), color 200ms var(--motion-ease), transform 200ms var(--motion-ease);
+  }
+
+  .project-link:hover,
+  .project-link:focus-visible {
+    border-color: color-mix(in srgb, var(--secondary) 46%, var(--card-border));
+    background: color-mix(in srgb, var(--secondary) 10%, transparent);
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+
+  .project-link .material-symbols-outlined {
+    font-size: 0.875rem;
+    font-variation-settings: "OPSZ" 20, "wght" 500, "FILL" 0, "GRAD" 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-cover,
+    .project-cover-overlay,
+    .project-cover-overlay .material-symbols-outlined,
+    .project-link {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

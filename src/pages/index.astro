@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { techGroups } from '../content/portfolio';
+import Lightbox from '../components/Lightbox.astro';
 
 const orbitImage =
   'https://lh3.googleusercontent.com/aida-public/AB6AXuDfIGquqOMvLxct6bp7uiJUOuQytF6M-Fb9PXbj0KgVDvLKAExD73LcHjBA4Qjer7Q2kfl0ouBQYJbIOYkCWHWOXN5inRliB6wCS36XoEBr6xcDHJ_eR_Bu_a9Nj8XtyFsNswYOyu_xUMaAcxPDSOr0mA2Q4cXk2g2QGc_c9qvOe91Ic3mdTpo7NMOO5XTQ0MicEiiIZ5iIQPGHfe33dRDW_FqAruXIkrr4Tl0aYPV477iBQJpquqeWW4CqXReA-Wfy3XfX2JtagA';
@@ -17,6 +18,8 @@ const navItems = [
 const projectChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Docker'];
 const urlShortenerChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Thymeleaf', 'JPA / Hibernate', 'Docker', 'GitHub Actions'];
 const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker', 'Swagger/OpenAPI'];
+const luminaImages = ['/lumina/lumina-01-hero.png', '/lumina/lumina-02-suggest.png', '/lumina/lumina-03-author.png'];
+const luminaChips = ['Java', 'Spring Boot', 'Elasticsearch', 'PostgreSQL', 'Docker', 'HTML', 'CSS', 'JavaScript'];
 ---
 
 <BaseLayout>
@@ -39,7 +42,7 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
     <section id="inicio" class="section-shell relative grid min-h-[716px] items-center overflow-hidden" aria-labelledby="hero-title">
       <div class="relative mx-auto grid w-full max-w-[1100px] gap-10 lg:grid-cols-12">
         <div class="hero-copy text-center lg:col-span-8 lg:col-start-3">
-          <p class="hero-eyebrow eyebrow">DESARROLLADOR FULL STACK</p>
+          <p class="hero-eyebrow eyebrow">DESARROLLADOR JAVA FULL STACK</p>
           <h1 id="hero-title" class="hero-name display-heading mt-6 text-6xl font-bold leading-[0.95] text-[var(--text)] md:text-8xl">
             Bryan Rodríguez
           </h1>
@@ -68,7 +71,7 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
             <div class="flex flex-col justify-between gap-6 md:flex-row md:items-start">
               <div>
                 <p class="text-sm font-semibold text-[var(--secondary)]">Mozaiko</p>
-                <h3 class="mt-2 text-2xl font-semibold text-[var(--text)]">Desarrollador Full Stack Freelancer</h3>
+                <h3 class="mt-2 text-2xl font-semibold text-[var(--text)]">Desarrollador Java Full Stack Freelancer</h3>
               </div>
               <p class="text-sm font-medium text-[var(--muted)]">Marzo 2026 — Mayo 2026</p>
             </div>
@@ -150,11 +153,6 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
           <article class="orbit-project surface-card overflow-hidden rounded-[2rem] lg:grid lg:grid-cols-2">
             <div class="orbit-image min-h-[280px] bg-cover bg-center" style={`background-image: url('/languagedive-swagger.png')`} aria-label="Vista previa de la documentación Swagger de LanguageDive"></div>
             <div class="flex flex-col justify-center p-6 md:p-8">
-              <div class="flex items-center justify-end">
-                <span class="rounded-full border border-[var(--outline-variant)] bg-[var(--card)] px-3 py-1 text-xs font-semibold text-[var(--secondary)]">
-                  En desarrollo
-                </span>
-              </div>
               <h3 class="display-heading text-4xl font-bold text-[var(--text)]">LanguageDive</h3>
               <p class="mt-5 leading-8 text-[var(--muted)]">Plataforma para aprender inglés mediante la lectura de libros en EPUB. El sistema procesa el contenido, lo divide en oraciones, detecta el idioma automáticamente y organiza las lecciones por capítulo. Permite guardar palabras con su traducción al instante y mantiene el progreso sincronizado entre sesiones.</p>
               <div class="mt-5 flex flex-wrap gap-4">
@@ -170,7 +168,34 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
               <div class="mt-6 flex flex-wrap gap-2">{languageDiveChips.map((chip) => <span class="chip px-3 py-1.5">{chip}</span>)}</div>
             </div>
           </article>
+
+          <article class="orbit-project surface-card overflow-hidden rounded-[2rem] lg:grid lg:grid-cols-2">
+            <button
+              type="button"
+              class="orbit-image group relative min-h-[280px] w-full bg-cover bg-center p-0 text-left"
+              style={`background-image: url('${luminaImages[0]}')`}
+              aria-label="Abrir galería de Lumina Books"
+              data-lightbox-trigger="lumina-books"
+              data-lightbox-index="0"
+            >
+              <span class="absolute inset-0 grid place-items-center bg-[rgba(8,8,10,0)] opacity-0 transition duration-200 group-hover:bg-[rgba(8,8,10,0.28)] group-hover:opacity-100 group-focus-visible:bg-[rgba(8,8,10,0.28)] group-focus-visible:opacity-100" aria-hidden="true">
+                <span class="grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-[rgba(20,19,19,0.82)] text-white backdrop-blur">
+                  <span class="material-symbols-outlined text-[20px]">zoom_in</span>
+                </span>
+              </span>
+            </button>
+            <div class="flex flex-col justify-center p-6 md:p-8">
+              <h3 class="display-heading text-4xl font-bold text-[var(--text)]">Lumina Books</h3>
+              <p class="mt-5 leading-8 text-[var(--muted)]">Buscador de libros con más de 1.6M de títulos. Permite buscar por título y autor con autocomplete en tiempo real, filtrar por categoría, precio y rating, y paginar resultados. Todo construido con búsqueda indexada utilizando Elasticsearch para respuestas en milisegundos.</p>
+              <a class="orbit-link link-focus mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--secondary)] transition hover:text-[var(--text)]" href="https://github.com/BryanR1910/indexed-search" target="_blank" rel="noreferrer">
+                GitHub
+                <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+              </a>
+              <div class="mt-6 flex flex-wrap gap-2">{luminaChips.map((chip) => <span class="chip px-3 py-1.5">{chip}</span>)}</div>
+            </div>
+          </article>
         </div>
+        <Lightbox images={luminaImages} title="Lumina Books" />
     </section>
 
     <section id="stack" class="section-reveal section-shell section-grid" aria-labelledby="stack-title">
@@ -221,7 +246,7 @@ const languageDiveChips = ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docke
 
   <footer class="border-t border-[var(--card-border)] py-8">
     <div class="mx-auto flex w-full max-w-[1100px] flex-col gap-3 px-6 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between md:px-8">
-      <p>© 2026 Bryan Rodríguez. Full Stack Developer.</p>
+      <p>© 2026 Bryan Rodríguez. Java Full Stack Developer.</p>
       <a class="link-focus hover:text-[var(--text)]" href="#inicio">Volver arriba</a>
     </div>
   </footer>

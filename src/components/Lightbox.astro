@@ -1,0 +1,561 @@
+---
+/**
+ * Lightbox.astro — Reusable gallery dialog
+ *
+ * Usage:
+ *   <Lightbox images={["/a.png", "/b.png"]} title="Project Name" />
+ *
+ * Trigger via attribute:
+ *   <button data-lightbox-trigger="project-name" data-lightbox-index="0">Open</button>
+ * Trigger via event:
+ *   window.dispatchEvent(new CustomEvent('lightbox:open', { detail: { slug: 'project-name', index: 0 } }))
+ *
+ * Notes:
+ * - `title` is slugified to create a unique dialog id (`lightbox-{slug}`); keep titles unique per page.
+ * - No hardcoded project values — works for any card/gallery by passing `images` + `title`.
+ * - Image swaps use a cross-fade + subtle scale/slide via `.is-changing` on the stage.
+ * - Dots animate the active blue bar smoothly with width + background transitions.
+ */
+interface Props {
+  images: string[];
+  title: string;
+}
+
+const { images, title } = Astro.props;
+const slug = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+const dialogId = `lightbox-${slug}`;
+---
+
+<dialog
+  id={dialogId}
+  class="lightbox-dialog"
+  aria-label={`Galería de ${title}`}
+  data-lightbox-dialog={slug}
+>
+  <div class="lightbox-inner">
+    <div class="lightbox-header">
+      <p class="lightbox-title">{title}</p>
+      <div class="lightbox-actions">
+        <span class="lightbox-counter" data-lightbox-counter>1 / {images.length}</span>
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Cerrar galería">
+          <span class="material-symbols-outlined" aria-hidden="true">close</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="lightbox-stage">
+      <button type="button" class="lightbox-nav lightbox-nav--prev" data-lightbox-prev aria-label="Imagen anterior">
+        <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+      </button>
+
+      <img
+        data-lightbox-image
+        src={images[0]}
+        alt={`${title} — imagen 1 de ${images.length}`}
+        class="lightbox-image"
+        loading="eager"
+        decoding="async"
+      />
+
+      <button type="button" class="lightbox-nav lightbox-nav--next" data-lightbox-next aria-label="Imagen siguiente">
+        <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+      </button>
+    </div>
+
+    <div class="lightbox-dots" role="tablist" aria-label="Selección de imagen">
+      {images.map((_, idx) => (
+        <button
+          type="button"
+          class="lightbox-dot"
+          data-lightbox-dot={idx}
+          aria-label={`Ir a imagen ${idx + 1}`}
+          aria-selected={idx === 0 ? 'true' : 'false'}
+        />
+      ))}
+    </div>
+  </div>
+</dialog>
+
+<style>
+  .lightbox-dialog {
+    padding: 0;
+    border: 1px solid var(--card-border);
+    border-radius: 1.5rem;
+    background: var(--card);
+    color: var(--text);
+    box-shadow: var(--shadow-card-hover), 0 0 0 1px rgba(255,255,255,0.04);
+    width: min(calc(100vw - 2rem), 960px);
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    transition: opacity 220ms var(--motion-ease), transform 220ms var(--motion-ease), display 220ms allow-discrete, overlay 220ms allow-discrete;
+  }
+
+  .lightbox-dialog[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    .lightbox-dialog[open] {
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+    }
+  }
+
+  .lightbox-dialog::backdrop {
+    background: rgba(8, 8, 10, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 220ms var(--motion-ease), display 220ms allow-discrete, overlay 220ms allow-discrete;
+  }
+
+  .lightbox-dialog[open]::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .lightbox-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  .lightbox-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .lightbox-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .lightbox-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .lightbox-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .lightbox-counter {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    min-width: 3rem;
+    text-align: right;
+    transition: opacity 200ms var(--motion-ease);
+  }
+
+  .lightbox-close {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--outline-variant);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color 200ms var(--motion-ease), background 200ms var(--motion-ease), color 200ms var(--motion-ease), transform 200ms var(--motion-ease);
+  }
+
+  .lightbox-close:hover,
+  .lightbox-close:focus-visible {
+    border-color: color-mix(in srgb, var(--secondary) 46%, var(--card-border));
+    background: color-mix(in srgb, var(--secondary) 10%, transparent);
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+
+  .lightbox-close .material-symbols-outlined {
+    font-size: 1.25rem;
+  }
+
+  .lightbox-stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: #0f0f0f;
+    padding: 1rem;
+    min-height: 320px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .lightbox-stage {
+      padding: 1.5rem;
+      min-height: 480px;
+    }
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: min(64dvh, 640px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.875rem;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: opacity 300ms var(--motion-ease), transform 300ms var(--motion-ease);
+    will-change: opacity, transform;
+  }
+
+  .lightbox-stage.is-changing .lightbox-image {
+    opacity: 0;
+    transform: scale(0.98) translateY(4px);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(20, 19, 19, 0.78);
+    color: var(--text);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: background 200ms var(--motion-ease), border-color 200ms var(--motion-ease), transform 200ms var(--motion-ease), opacity 200ms var(--motion-ease);
+    will-change: transform;
+  }
+
+  .lightbox-nav:hover,
+  .lightbox-nav:focus-visible {
+    background: rgba(26, 26, 26, 0.92);
+    border-color: color-mix(in srgb, var(--secondary) 36%, transparent);
+    transform: translateY(-50%) scale(1.04);
+  }
+
+  .lightbox-nav--prev { left: 0.75rem; }
+  .lightbox-nav--next { right: 0.75rem; }
+
+  @media (min-width: 768px) {
+    .lightbox-nav--prev { left: 1rem; }
+    .lightbox-nav--next { right: 1rem; }
+  }
+
+  .lightbox-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1rem 1rem;
+    border-top: 1px solid var(--card-border);
+  }
+
+  .lightbox-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--outline-variant);
+    background: transparent;
+    cursor: pointer;
+    /* Smooth blue-bar expansion: ease-out, stable gap */
+    transition:
+      width 320ms cubic-bezier(0.2, 0, 0, 1),
+      background 220ms var(--motion-ease),
+      border-color 220ms var(--motion-ease),
+      transform 200ms var(--motion-ease);
+    will-change: width;
+  }
+
+  .lightbox-dot[aria-selected="true"] {
+    width: 1.5rem;
+    background: var(--secondary);
+    border-color: var(--secondary);
+  }
+
+  .lightbox-dot:hover {
+    border-color: var(--secondary);
+    transform: scale(1.15);
+  }
+
+  .lightbox-dot:focus-visible {
+    outline: 2px solid var(--outline);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lightbox-dialog,
+    .lightbox-dialog::backdrop,
+    .lightbox-close,
+    .lightbox-nav,
+    .lightbox-dot,
+    .lightbox-image,
+    .lightbox-counter {
+      transition: none !important;
+    }
+
+    .lightbox-stage.is-changing .lightbox-image {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script define:vars={{ dialogId, images, title, slug }}>
+  (() => {
+    const dialog = document.getElementById(dialogId);
+    if (!(dialog instanceof HTMLDialogElement)) return;
+
+    const img = dialog.querySelector('[data-lightbox-image]');
+    const counter = dialog.querySelector('[data-lightbox-counter]');
+    const closeBtn = dialog.querySelector('[data-lightbox-close]');
+    const prevBtn = dialog.querySelector('[data-lightbox-prev]');
+    const nextBtn = dialog.querySelector('[data-lightbox-next]');
+    const dots = [...dialog.querySelectorAll('[data-lightbox-dot]')];
+    const stage = dialog.querySelector('.lightbox-stage');
+
+    let current = 0;
+    let lastTrigger = null;
+    let isInitialPaint = true;
+    let swapTimer = null;
+    let revealTimer = null;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const syncChrome = () => {
+      if (counter) counter.textContent = `${current + 1} / ${images.length}`;
+      dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === current)));
+      const single = images.length <= 1;
+      if (prevBtn) prevBtn.style.display = single ? 'none' : '';
+      if (nextBtn) nextBtn.style.display = single ? 'none' : '';
+    };
+
+    const revealImage = () => {
+      // Remove changing state on next frame for smooth fade-in
+      if (revealTimer) clearTimeout(revealTimer);
+      revealTimer = window.setTimeout(() => {
+        stage?.classList.remove('is-changing');
+      }, 50);
+    };
+
+    const swapImage = (nextSrc, nextAlt) => {
+      if (!(img instanceof HTMLImageElement)) return;
+
+      // If image already shows that src, just reveal
+      const currentSrcAttr = img.getAttribute('src');
+      const isSameSrc = currentSrcAttr === nextSrc || img.src.endsWith(nextSrc);
+      if (isSameSrc && !stage?.classList.contains('is-changing')) {
+        img.alt = nextAlt;
+        return;
+      }
+
+      img.alt = nextAlt;
+
+      // Direct swap for reduced motion, initial paint, or when dialog not yet open
+      const shouldAnimate = !prefersReducedMotion && !isInitialPaint && dialog.open && stage;
+
+      if (!shouldAnimate) {
+        img.src = nextSrc;
+        stage?.classList.remove('is-changing');
+        isInitialPaint = false;
+        return;
+      }
+
+      // Animated path: fade out -> swap -> fade in on load
+      if (swapTimer) clearTimeout(swapTimer);
+      if (revealTimer) clearTimeout(revealTimer);
+
+      stage.classList.add('is-changing');
+
+      swapTimer = window.setTimeout(() => {
+        // Prepare load listener before assigning src to catch cached images
+        const onReady = () => {
+          img.removeEventListener('load', onReady);
+          img.removeEventListener('error', onReady);
+          // Ensure fade-in happens after browser paints new src
+          requestAnimationFrame(() => revealImage());
+        };
+
+        img.addEventListener('load', onReady);
+        img.addEventListener('error', onReady);
+
+        img.src = nextSrc;
+
+        // Cached image: complete is true and load may not fire
+        if (img.complete) {
+          // Small delay to let the fade-out be visible before revealing
+          requestAnimationFrame(() => revealImage());
+          img.removeEventListener('load', onReady);
+          img.removeEventListener('error', onReady);
+        }
+
+        // Fallback: never stay stuck in faded state
+        revealTimer = window.setTimeout(() => {
+          stage.classList.remove('is-changing');
+          img.removeEventListener('load', onReady);
+          img.removeEventListener('error', onReady);
+        }, 600);
+      }, 150);
+    };
+
+    const update = () => {
+      if (!(img instanceof HTMLImageElement)) return;
+      const nextSrc = images[current];
+      const nextAlt = `${title} — imagen ${current + 1} de ${images.length}`;
+
+      syncChrome();
+      swapImage(nextSrc, nextAlt);
+
+      // After first update, allow animations
+      if (isInitialPaint) {
+        // Keep initial paint instant; next updates animate
+        window.setTimeout(() => { isInitialPaint = false; }, 0);
+      }
+    };
+
+    const openAt = (index = 0, trigger = null) => {
+      current = Math.max(0, Math.min(index, images.length - 1));
+      lastTrigger = trigger instanceof HTMLElement ? trigger : null;
+
+      // For open, render chrome immediately; image swaps instantly on first open
+      // then animates on subsequent navigation
+      const wasInitial = isInitialPaint;
+      if (!dialog.open) {
+        syncChrome();
+        if (img instanceof HTMLImageElement) {
+          img.src = images[current];
+          img.alt = `${title} — imagen ${current + 1} de ${images.length}`;
+        }
+        // Allow dialog open transition before enabling image animations
+        isInitialPaint = true;
+        if (!dialog.open) dialog.showModal();
+        closeBtn instanceof HTMLElement && closeBtn.focus();
+        document.body.style.overflow = 'hidden';
+        window.setTimeout(() => { isInitialPaint = false; }, 300);
+        // Sync dots/counter already done; ensure nav visibility
+        syncChrome();
+      } else {
+        update();
+        closeBtn instanceof HTMLElement && closeBtn.focus();
+      }
+
+      if (wasInitial) {
+        // no-op, handled above
+      }
+    };
+
+    const close = () => {
+      if (swapTimer) clearTimeout(swapTimer);
+      if (revealTimer) clearTimeout(revealTimer);
+      stage?.classList.remove('is-changing');
+      if (dialog.open) dialog.close();
+    };
+
+    const next = () => {
+      current = (current + 1) % images.length;
+      update();
+    };
+
+    const prev = () => {
+      current = (current - 1 + images.length) % images.length;
+      update();
+    };
+
+    // Triggers: any element with data-lightbox-trigger === slug
+    const bindTriggers = () => {
+      document.querySelectorAll(`[data-lightbox-trigger="${slug}"]`).forEach((el) => {
+        if (el.hasAttribute('data-lightbox-bound')) return;
+        el.setAttribute('data-lightbox-bound', 'true');
+        el.addEventListener('click', () => {
+          const idx = Number(el.getAttribute('data-lightbox-index') ?? '0');
+          openAt(Number.isNaN(idx) ? 0 : idx, el);
+        });
+      });
+    };
+
+    // Also support custom event: window.dispatchEvent(new CustomEvent('lightbox:open', { detail: { slug, index } }))
+    window.addEventListener('lightbox:open', (e) => {
+      const detail = e.detail;
+      if (!detail || detail.slug !== slug) return;
+      openAt(detail.index ?? 0);
+    });
+
+    closeBtn?.addEventListener('click', close);
+    nextBtn?.addEventListener('click', next);
+    prevBtn?.addEventListener('click', prev);
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.getAttribute('data-lightbox-dot'));
+        if (!Number.isNaN(idx)) {
+          current = idx;
+          update();
+        }
+      });
+    });
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) close();
+    });
+
+    dialog.addEventListener('close', () => {
+      document.body.style.overflow = '';
+      if (lastTrigger) {
+        lastTrigger.focus();
+        lastTrigger = null;
+      }
+    });
+
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        next();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prev();
+      }
+    });
+
+    // Minimal focus trap: keep focus inside dialog when tabbing
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const focusable = dialog.querySelectorAll('button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    bindTriggers();
+    syncChrome();
+    // Ensure first image is set without animation
+    if (img instanceof HTMLImageElement && images[0]) {
+      img.src = images[0];
+      img.alt = `${title} — imagen 1 de ${images.length}`;
+      window.setTimeout(() => { isInitialPaint = false; }, 0);
+    }
+
+    // Re-bind if DOM changes (e.g., Astro view transitions)
+    const observer = new MutationObserver(() => bindTriggers());
+    observer.observe(document.body, { childList: true, subtree: true });
+  })();
+</script>
