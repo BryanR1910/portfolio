@@ -430,18 +430,7 @@ a {
 }
 
 .hero-name-accent {
-  display: block;
-  width: min(56vw, 15rem);
-  height: 1px;
-  margin: 1.25rem auto 0;
-  background: linear-gradient(90deg, transparent, rgba(178, 202, 211, 0.92), rgba(211, 188, 252, 0.82), transparent);
-  box-shadow: 0 0 18px rgba(211, 188, 252, 0.18);
-  opacity: 0;
-  transform: scaleX(0.18);
-  transform-origin: center;
-  animation:
-    hero-accent-draw 780ms var(--motion-ease) 410ms both,
-    hero-accent-breathe 5s ease-in-out 1.2s infinite;
+  display: none;
 }
 
 .hero-description {
