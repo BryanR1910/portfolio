@@ -227,6 +227,7 @@ const dialogId = `lightbox-${slug}`;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 10;
     display: inline-grid;
     place-items: center;
     width: 2.5rem;
@@ -237,8 +238,7 @@ const dialogId = `lightbox-${slug}`;
     color: var(--text);
     backdrop-filter: blur(8px);
     cursor: pointer;
-    transition: background 200ms var(--motion-ease), border-color 200ms var(--motion-ease), transform 200ms var(--motion-ease), opacity 200ms var(--motion-ease);
-    will-change: transform;
+    transition: background 200ms var(--motion-ease), border-color 200ms var(--motion-ease), transform 200ms var(--motion-ease);
   }
 
   .lightbox-nav:hover,

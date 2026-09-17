@@ -103,7 +103,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Lumina Books',
-    summary: 'Buscador de libros con más de 1.6M de títulos. Permite buscar por título y autor con autocomplete en tiempo real, filtrar por categoría, precio y rating, y paginar resultados. Todo construido con búsqueda indexada utilizando Elasticsearch para respuestas en milisegundos.',
+    summary: 'Catálogo de más de 1.6M de libros para buscar por título o autor. Incluye autocompletado mientras escribes, filtros por categoría, precio y rating, y paginación. Todo indexado con Elasticsearch.',
     stack: ['Java', 'Spring Boot', 'Elasticsearch', 'PostgreSQL', 'Docker', 'HTML', 'CSS', 'JavaScript'],
     outcome: 'Catálogo completo con estados de carga, filtros dinámicos y navegación fluida en grilla o lista.',
     href: [{ label: 'GitHub', url: 'https://github.com/BryanR1910/indexed-search' }],
